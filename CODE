@@ -1,0 +1,58 @@
+#include <LiquidCrystal.h>
+
+
+#define NOTE_C4 262
+#define NOTE_D4 294
+#define NOTE_E4 330
+#define NOTE_F4 349
+#define NOTE_G4 392
+#define NOTE_A4 440
+#define NOTE_B4 494
+//defined the required notes
+int val0;
+//val1 = analogReference(DEFAULT);
+LiquidCrystal lcd(12,11,9,8,7,6,5,4,3,2);
+void setup()
+{
+	lcd.begin(16,2);
+  	lcd.print("Hello Gorgeous!");
+  	delay(3000);
+}
+
+void loop()
+{
+  	val0 = analogRead(A0);
+  	//float analog = val0*4.9;
+    delay(10); // Delay a little bit to improve simulation performance
+  	delay(5);
+  	lcd.clear();
+  	lcd.print(val0);
+  	lcd.setCursor(0,1);
+  	lcd.print("*4.9 mV");
+  	if(val0 == 909)
+    {
+      tone(A1,NOTE_B4);
+    }else if(val0 == 901)
+    {
+      tone(A1,NOTE_A4);
+    }else if(val0 == 893)
+    {
+      tone(A1,NOTE_G4);
+    }else if(val0 == 885)
+    {
+      tone(A1,NOTE_F4);
+    }else if(val0 == 874)
+    {
+      tone(A1,NOTE_E4);
+    }else if(val0 == 863)
+    {
+      tone(A1,NOTE_D4);
+    }else if(val0 == 849)
+    {
+      tone(A1,NOTE_C4);
+    }else
+    {
+      noTone(A1);
+    }
+  	
+}
